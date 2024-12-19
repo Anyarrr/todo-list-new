@@ -20,6 +20,15 @@ function App() {
     const newTodoList = task.filter(t => t.id !== id);
     setTask(newTodoList);
   }
+  let addTask = ( title: string ) => {
+    let newTask = {
+      id: v1(),
+      title:title,
+      isDone: false,
+    }
+    let addetTask = [newTask, ...task];
+    setTask(addetTask);
+  }
 
   let filterTasks = task;
   if(filter === "complited"){
@@ -39,6 +48,7 @@ function App() {
       tasks={filterTasks}
       removeTask={removeTask}
       filterResult={filterResult}
+      addTask={addTask}
       />
     </div>
     

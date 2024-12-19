@@ -1,3 +1,4 @@
+import { useState } from "react"
 import { FilterType } from "./App"
 
 type TasksType = {
@@ -12,15 +13,23 @@ type PropsType = {
   tasks: Array<TasksType>
   removeTask:(id: string) => void
   filterResult:(value: FilterType) => void
-  
+  addTask: ( title: string ) => void;
 }
 export const TodoList = ( props:PropsType ) => {
+  const [ newTask, setnewtask ] = useState("");
+
+  const inputValue = (value: string) => {
+    setnewtask(value);
+  }
+
   return (
     <div>
       <h3>{ props.title }</h3>
       <div>
-        <input/>
-        <button>+</button>
+        <input 
+        value={newTask}
+        />
+        <button onClick={() => {props.addTask( newTask )}}>+</button>
       </div>
       <div>
         <ul>
@@ -40,5 +49,6 @@ export const TodoList = ( props:PropsType ) => {
   );
 };
 
-//1 вывести две тудушки с разными тасками
-//2 +удаление тасок, фильтрация все активные и неактивные, +метод map для тасок
+//1 +вывести две тудушки с разными тасками
+//2 +удаление тасок, +фильтрация все активные и неактивные, +метод map для тасок
+//3 выводить добавленную таску
